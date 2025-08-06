@@ -72,3 +72,41 @@ cd todo-service
 npm install
 npm run dev
 ```
+
+## Testing
+
+### Running Tests Locally
+
+```bash
+# User Service Tests
+cd user-service
+npm test
+
+# Todo Service Tests
+cd todo-service
+npm test
+
+# Frontend Tests
+cd frontend
+npm test
+```
+
+### Running Tests with Docker
+
+For testing with a dedicated test database:
+
+```bash
+# Run tests with test database
+docker-compose -f docker-compose.test.yml up --abort-on-container-exit
+
+# Clean up test containers
+docker-compose -f docker-compose.test.yml down
+```
+
+### Test Coverage
+
+- **User Service**: Tests for registration, login, and JWT validation
+- **Todo Service**: Tests for CRUD operations with authentication
+- **Frontend**: React component tests (when implemented)
+
+**Note**: Tests are skipped during Docker build to avoid database dependencies. Use the local test commands or the test Docker Compose configuration for running tests.

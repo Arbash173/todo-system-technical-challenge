@@ -7,11 +7,15 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies (including dev dependencies for testing)
+RUN npm ci
 
 # Copy source code
 COPY . .
+
+# Note: Tests are skipped during Docker build
+# To run tests locally with: npm test
+# RUN npm test -- --watchAll=false --passWithNoTests
 
 # Build the app
 RUN npm run build
